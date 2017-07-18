@@ -1,6 +1,7 @@
 from sqlalchemy import *
 from sqlalchemy.engine.url import URL 
-
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
 import settings
 
 DeclarativeBase = declarative_base()

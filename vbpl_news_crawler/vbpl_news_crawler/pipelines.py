@@ -26,7 +26,6 @@ class VbplNewsCrawlerPipeline(object):
 		finally:
 			session.close()
 		return item
-
 		# try:
 		# 	self.cursor.execute("""INSERT INTO news (doc_title,doc_url,doc_id,doc_description,doc_content,doc_date) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')""".format(item['doc_title'],item['doc_url'],item['doc_id'],item['doc_description'],item['doc_content'],item['doc_date']))
 		# 	self.conn.commit()
