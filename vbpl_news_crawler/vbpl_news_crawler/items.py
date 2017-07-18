@@ -15,5 +15,6 @@ class VbplNewsCrawlerItem(scrapy.Item):
     doc_description = scrapy.Field()
     doc_content = scrapy.Field()
     doc_date = scrapy.Field()
+# try comment to commit
     
 
