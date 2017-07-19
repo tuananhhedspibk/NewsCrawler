@@ -14,11 +14,11 @@ class NewsSpider(Spider):
     def parse_document(self,response):
     	meta = response.meta
     	item = VbplNewsCrawlerItem()
-    	item['doc_id'] = str(meta['doc_id'])
-    	item['doc_title'] = str(meta['doc_title']).strip()
-    	item['doc_url'] ="http://vbpl.vn/" + str(meta['doc_url'])
-    	item['doc_date'] = str(meta['doc_date'])
-    	item['doc_description'] = str(meta['doc_description']).strip()
+    	item['doc_id'] = str(meta['doc_id']).encode('utf-8')
+    	item['doc_title'] = meta['doc_title'].encode('utf-8').strip()
+    	item['doc_url'] ="http://vbpl.vn/" + str(meta['doc_url']).encode('utf-8')
+    	item['doc_date'] = str(meta['doc_date']).encode('utf-8')
+    	item['doc_description'] = meta['doc_description'].encode('utf-8').strip()
 
     	news_content = response.xpath('//div[@class="box-news box-news-home "]//div[@class="content"]')
     	
@@ -33,7 +33,7 @@ class NewsSpider(Spider):
     	news_content = news_content.replace(news_other,'')
     	news_content = news_content.replace('*','')
 
-    	item['doc_content'] = str(news_content).strip()
+    	item['doc_content'] = news_content.encode('utf-8').strip()
     	yield item
 
 

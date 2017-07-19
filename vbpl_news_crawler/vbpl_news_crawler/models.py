@@ -7,10 +7,13 @@ import settings
 DeclarativeBase = declarative_base()
 
 def db_connect():
-	return create_engine(URL(**setting.DATABASE))
+	return create_engine(URL(**settings.DATABASE))
+def create_news_table(engine):
+	DeclarativeBase.metadata.create_all(engine)
 
 class News(DeclarativeBase):
 	__tablename__ = "news"
+	id = Column(Integer, primary_key=True)
 	doc_title = Column('doc_title',String)
 	doc_url = Column('doc_url',String)
 	doc_id = Column('doc_id',String)

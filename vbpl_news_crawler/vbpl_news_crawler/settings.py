@@ -93,6 +93,6 @@ DATABASE = {
 	'host' : 'localhost',
 	'port' : '5432',
 	'username' : 'postgres',
-	'password' : 'tranmanh12',
-	'database' : 'lkbc'
+	'password' : '',
+	'database' : 'vbpl'
 }
