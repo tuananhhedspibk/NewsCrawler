@@ -15,6 +15,8 @@ class VbplNewsCrawlerItem(scrapy.Item):
     doc_description = scrapy.Field()
     doc_content = scrapy.Field()
     doc_date = scrapy.Field()
+    created_at = scrapy.Field()
+    updated_at = scrapy.Field()
 
     
 

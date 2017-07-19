@@ -3,6 +3,8 @@ from scrapy.selector import Selector
 from scrapy.item import Item, Field
 import scrapy
 import html2text
+import time
+import datetime
 
 from vbpl_news_crawler.items import VbplNewsCrawlerItem
 class NewsSpider(Spider):
@@ -34,6 +36,9 @@ class NewsSpider(Spider):
     	news_content = news_content.replace('*','')
 
     	item['doc_content'] = news_content.encode('utf-8').strip()
+        item['updated_at'] = str(datetime.datetime.now())
+        item['created_at'] = str(datetime.datetime.now())
+        
     	yield item
 
 
