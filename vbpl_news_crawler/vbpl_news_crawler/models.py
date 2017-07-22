@@ -12,7 +12,6 @@ def db_connect():
 	return create_engine(URL(**settings.DATABASE))
 def create_news_table(engine):
 	DeclarativeBase.metadata.create_all(engine)
-
 class News(DeclarativeBase):
 	__tablename__ = "news"
 	doc_title = Column('doc_title',String)
