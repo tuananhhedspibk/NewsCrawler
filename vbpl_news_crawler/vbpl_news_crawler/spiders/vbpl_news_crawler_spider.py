@@ -8,6 +8,8 @@ import time
 import datetime
 from bs4 import BeautifulSoup
 #<a  class="toanvan" href="/tw/pages/vbpq-timkiem.aspx?type=0&amp;s=1&amp;Keyword=70/2017/NĐ-CP&amp;SearchIn=Title,Title1&amp;IsRec=1">70/2017/NĐ-CP</a>
+#<a target="_blank" class="toanvan" href="/tw/pages/vbpq-timkiem.aspx?type=0&amp;s=1&amp;Keyword=20/2015/NĐ-CP ngày&amp;SearchIn=Title,Title1&amp;IsRec=1">20/2015/NĐ-CP&nbsp;ngày</a>
+#<a href="/articles/so_ki_hieu/20/2015/N%C4%90-CP%C2%A0ng%C3%A0y">20/2015/N%C4%90-CP%C2%A0ng%C3%A0y</a>
 def replace_href_link(context):
     context = context.replace(" target=\"_blank\"",'')
     soup = BeautifulSoup(context,"html.parser")
@@ -16,15 +18,16 @@ def replace_href_link(context):
             href = str(link.get('href'))
             tmp1 = href.split("Keyword=")[1]
             tmp2 = tmp1.split("&")[0]
-            tmp = tmp2.split(' '.decode("utf8"))
+            # tmp = tmp2.split(' '.decode("utf8"))
+            tmp = tmp2.split("%C2%A0")
             tmp3 = tmp[0]
-            tmp4 = "<a href="+"/articles/so_ki_hieu/"+str(tmp3)+">"+str(tmp3)+"</a>"
+            tmp4 = "<a href="+"/articles/so_ki_hieu/"+tmp3+">"+str(tmp3).decode('utf8')+"</a>"
             if len(tmp)==2:
                 tmp4 = tmp4 + " "+tmp[1] + " "
             context = context.replace(str(link),str(tmp4).encode('utf-8'))
         except IndexError:
             pass
-    return context
+    return context.encode("ascii","ignore")
 
 from vbpl_news_crawler.items import VbplNewsCrawlerItem
 class NewsSpider(Spider):
